@@ -49,22 +49,10 @@ bot.on('message', async (msg) => {
         await bot.sendMessage(chatId, 'Всю информацию вы получите в этом чате');
       }, 3000);
     } catch (e) {
-      await bot.answerWebAppQuery(query_id, {
-        type: 'article',
-        id: query_id,
-        title: 'Не удалось приобрести товар',
-        input_message_content: {
-          message_text: 'Произошла ошибка, попробуйте позже',
-        },
-      });
       console.log(e);
     }
   }
 });
-
-// app.get('/', (req, res) => {
-//   res.send('Hello world again!');
-// });
 
 app.post('/web-data', async (req, res) => {
   const { queryId, products = [], totalPrice } = req.body;
