@@ -23,6 +23,7 @@ bot.on('message', async (msg) => {
         ],
       },
     });
+
     await bot.sendMessage(
       chatId,
       'Заходи в наш интернет магазин по кнопке ниже',
@@ -48,6 +49,14 @@ bot.on('message', async (msg) => {
         await bot.sendMessage(chatId, 'Всю информацию вы получите в этом чате');
       }, 3000);
     } catch (e) {
+      await bot.answerWebAppQuery(queryId, {
+        type: 'article',
+        id: queryId,
+        title: 'Не удалось приобрести товар',
+        input_message_content: {
+          message_text: 'Произошла ошибка, попробуйте позже',
+        },
+      });
       console.log(e);
     }
   }
