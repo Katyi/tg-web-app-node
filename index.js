@@ -62,9 +62,9 @@ bot.on('message', async (msg) => {
   }
 });
 
-app.get('/', (req, res) => {
-  res.send('Hello world again!');
-});
+// app.get('/', (req, res) => {
+//   res.send('Hello world again!');
+// });
 
 app.post('/web-data', async (req, res) => {
   const { queryId, products = [], totalPrice } = req.body;
@@ -81,14 +81,6 @@ app.post('/web-data', async (req, res) => {
     });
     return res.status(200).json({});
   } catch (e) {
-    await bot.answerWebAppQuery(queryId, {
-      type: 'article',
-      id: queryId,
-      title: 'Не удалось приобрести товар',
-      input_message_content: {
-        message_text: 'Произошла ошибка, попробуйте позже',
-      },
-    });
     return res.status(500).json({});
   }
 });
